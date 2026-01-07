@@ -1,0 +1,47 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="p-fluid">
+  <div class="field mb-4">
+    <label for="title" class="block mb-2">Task Title</label>
+    <input
+      pInputText
+      id="title"
+      formControlName="title"
+      placeholder="Enter task title"
+      class="w-full"
+      [class.ng-invalid]="title?.invalid && title?.touched"
+      [class.ng-dirty]="title?.touched" />
+    <small class="text-red-500" *ngIf="title?.invalid && title?.touched">
+      <span *ngIf="title?.errors?.['required']">Title is required.</span>
+      <span *ngIf="title?.errors?.['minlength']">Title must be at least 3 characters.</span>
+    </small>
+  </div>
+
+  <div class="field mb-4">
+    <label for="description" class="block mb-2">Description</label>
+    <textarea
+      pInputTextarea
+      id="description"
+      formControlName="description"
+      rows="5"
+      placeholder="Enter task description"
+      class="w-full"
+      [class.ng-invalid]="description?.invalid && description?.touched"
+      [class.ng-dirty]="description?.touched"></textarea>
+    <small class="text-red-500" *ngIf="description?.invalid && description?.touched">
+      <span *ngIf="description?.errors?.['required']">Description is required.</span>
+      <span *ngIf="description?.errors?.['minlength']">Description must be at least 10 characters.</span>
+    </small>
+  </div>
+
+  <div class="flex justify-content-end gap-2 mt-4">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      [outlined]="true"
+      type="button"
+      (onClick)="onCancel()" />
+    <p-button
+      label="Add Task"
+      type="submit"
+      [disabled]="taskForm.invalid" />
+  </div>
+</form>

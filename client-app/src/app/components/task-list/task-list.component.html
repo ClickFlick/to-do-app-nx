@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2>Tasks</h2>
+        <p-button label="Add Task" icon="pi pi-plus" (onClick)="showDialog()" />
+    </div>
+
+    <p-table
+        [value]="tasks"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowHover]="true"
+        styleClass="p-datatable-striped">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 20%">Title</th>
+                <th style="width: 35%">Description</th>
+                <th style="width: 10%">Completed</th>
+                <th style="width: 20%">Created At</th>
+                <th style="width: 10%">Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-task>
+            <tr [ngClass]="rowClass(task)" [ngStyle]="rowStyle(task)">
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                    <i [class]="task.completed ? 'pi pi-check-circle text-green-500' : 'pi pi-times-circle text-red-500'"></i>
+                    {{ task.completed ? 'Yes' : 'No' }}
+                </td>
+                <td>{{ task.createdAt | date: 'short' }}</td>
+                <td>
+                    <p-badge
+                        [value]="task.completed ? 'Done' : 'Pending'"
+                        [severity]="stockSeverity(task)" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-dialog
+        header="Add New Task"
+        [(visible)]="displayDialog"
+        [modal]="true"
+        [style]="{ width: '500px' }"
+        [draggable]="false"
+        [resizable]="false">
+        <app-add-task (taskAdded)="onTaskAdded($event)" (cancel)="hideDialog()" />
+    </p-dialog>
+</div>

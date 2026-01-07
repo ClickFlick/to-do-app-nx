@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { TaskEntity } from '@to-do-app-nx/database';
+import { TaskEntity } from '../tasks/entities/task.entity';
 
 export const typeOrmConfig: DataSourceOptions = {
   type: 'postgres',
@@ -10,7 +10,6 @@ export const typeOrmConfig: DataSourceOptions = {
   database: 'nx-app',
   entities: [TaskEntity],
   synchronize: true,
-  migrations: ['libs/shared/database/src/lib/migrations/*.ts'],
 };
 
 export const AppDataSource = new DataSource(typeOrmConfig);

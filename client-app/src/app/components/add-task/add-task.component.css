@@ -1,0 +1,32 @@
+.field {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+small {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+:host ::ng-deep {
+  .p-inputtext,
+  .p-inputtextarea {
+    width: 100%;
+  }
+
+  .p-inputtext.ng-invalid.ng-dirty,
+  .p-inputtextarea.ng-invalid.ng-dirty {
+    border-color: #ef4444;
+  }
+
+  .p-button {
+    padding: 0.75rem 1.5rem;
+  }
+}

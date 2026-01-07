@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 @Entity('tasks')
 export class TaskEntity {
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id!: number;
 
   @Column()
   title!: string;
